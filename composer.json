@@ -1,0 +1,24 @@
+{
+    "name": "larvelfaucet/faucetpay",
+    "description": "(Unofficial) Package for microwallet FaucetPay.io API",
+    "type": "library",
+    "require": {
+        "guzzlehttp/guzzle": "^6.5"
+    },
+    "require-dev": {
+        "guzzlehttp/guzzle": "^6.5"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "larvelfaucet",
+            "email": "larvelfaucet@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "autoload":{
+        "psr-4": {
+            "larvelfaucet\\FaucetPay\\": "src"
+        }
+    }
+}
