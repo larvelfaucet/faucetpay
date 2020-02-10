@@ -8,6 +8,7 @@ class ApiClient{
     private const _version = 1;
     private const _baseUrl = 'https://faucetpay.io/api/';
     private $apiKey = '';
+    private $timeout = 30;
 
     private $availableMethods = [
         'getBalance' => 'balance',
@@ -18,9 +19,13 @@ class ApiClient{
         'faucets' => 'faucetlist'
     ];
 
+    public function getTimeout(){
+        return $this->timeout;
+    }
 
-    public function __construct(String $apiKey) {
+    public function __construct(String $apiKey, int $timeout = 30) {
         $this->apiKey = $apiKey;
+        $this->timeout = $timeout;
     }
 
     public function getAvailableMethods(): Array {
@@ -32,7 +37,7 @@ class ApiClient{
     }
 
     protected function _call($method, $params = []): ApiResponse{
-        $client = new Client(['timeout' => 30]);
+        $client = new Client(['timeout' => $this->getTimeout()]);
         $args = $params;
         $args['api_key'] = $this->apiKey;
         $response = $client->request('POST', $this->getUrl($method),[
