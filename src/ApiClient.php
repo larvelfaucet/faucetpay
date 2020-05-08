@@ -64,13 +64,17 @@ class ApiClient{
         ]);
     }
 
-    public function send(String $address, int $amount, String $currency = 'BTC', bool $isReferral = false){
-        return $this->_call(__FUNCTION__, [
+    public function send(String $address, int $amount, String $currency = 'BTC', bool $isReferral = false, string $ipAddress = ''){
+        $data = [
             'to' => $address,
             'currency' => $currency,
             'amount' => $amount,
-            'referral' => $isReferral
-        ]);
+            'referral' => $isReferral,
+        ];
+        if(!empty($ipAddress) && filter_var($ipAddress, FILTER_VALIDATE_IP) !== FALSE){
+            $data['ip_address'] = $ipAddress;
+        }
+        return $this->_call(__FUNCTION__, $data);
     }
 
     public function getRecentPayouts(int $count = 100, String $currency = 'BTC'): ApiResponse {
