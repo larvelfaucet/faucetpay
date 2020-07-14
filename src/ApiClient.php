@@ -16,7 +16,8 @@ class ApiClient{
         'checkAddress' => 'checkaddress',
         'send' => 'send',
         'getRecentPayouts' => 'payouts',
-        'faucets' => 'faucetlist'
+        'faucets' => 'faucetlist',
+        'faucetlist' => 'faucetlist',
     ];
 
     public function getTimeout(){
@@ -85,10 +86,10 @@ class ApiClient{
     }
 
     public function faucets(): ApiResponse {
-        return $this->faucetlist();
+        return $this->_call(__FUNCTION__);
     }
 
-    public function faucetlist(): ApiResponse {
+    public function faucetlist(): ApiResponse{
         return $this->_call(__FUNCTION__);
     }
 }
