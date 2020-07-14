@@ -20,5 +20,9 @@
         "psr-4": {
             "larvelfaucet\\FaucetPay\\": "src"
         }
-    }
+    },
+    "repositories": [{
+        "type": "path",
+        "url": "../faucetpay"
+    }]
 }

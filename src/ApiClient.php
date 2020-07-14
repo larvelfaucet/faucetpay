@@ -34,7 +34,7 @@ class ApiClient{
     }
 
     protected function getUrl(String $method): String {
-        return self::_baseUrl . '/v' . self::_version . '/' . $this->availableMethods[$method];
+        return self::_baseUrl . '/'. ($this->availableMethods[$method] == 'faucetlist' ? 'list' : '') .'v' . self::_version . '/' . $this->availableMethods[$method];
     }
 
     protected function _call($method, $params = []): ApiResponse{
@@ -44,7 +44,7 @@ class ApiClient{
         $response = $client->request('POST', $this->getUrl($method),[
             'form_params' => $args
         ])->getBody();
-        return new ApiResponse(json_decode($response, false));
+        return new ApiResponse(json_decode($response, false), $this->getUrl($method), $args);
     }
     
     public function getBalance(String $currency = 'BTC'): ApiResponse {

@@ -5,8 +5,12 @@ class ApiResponse {
     public $status;
     public $message;
     public $data;
+    public $url;
+    public $args;
 
-    public function __construct($data){
+    public function __construct($data, $url='', $args){
+        $this->url = $url;
+        $this->args = $args;
         $this->data = new \stdClass();
         $this->status = (int)$data->status;
         $this->message = $data->message;
