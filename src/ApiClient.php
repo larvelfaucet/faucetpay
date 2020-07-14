@@ -85,6 +85,10 @@ class ApiClient{
     }
 
     public function faucets(): ApiResponse {
+        return $this->faucetlist();
+    }
+
+    public function faucetlist(): ApiResponse {
         return $this->_call(__FUNCTION__);
     }
 }
